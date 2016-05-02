@@ -9,7 +9,7 @@ The purpose of this document is to explain the core properties of the different 
 Element can generate and operate on six different types of Object:
 * Project - the collection of all objects used in the design process
 * Volume - a region of 3D space, essentially a shape, blob, etc
-* Surface - a 2-dimensional object in 3D space.  A surface is closed if it encloses a volume (divides space into inside and outside regions)
+* Surface - a 2-dimensional object in 3D space.  A surface is closed if it encloses volume (divides space into inside and outside regions)
 * Lattice - a structure composed of points in space and line segments connecting them.
 * Rule - a method of creating lattices.
 * Modifier - a tool for acting on lattice, whose effect varies by location in space.
