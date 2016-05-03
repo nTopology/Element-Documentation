@@ -11,6 +11,18 @@ Front end: For each tool, separate into two pieces:
   2. another part that uses those parameters
     * to assemble and issue commands to the back end
 
+### Identify and design controller / internal protocol
+
+I believe that we need to design the intermediary between user interaction
+and computation.  This involves
+  1. Encapsulation of command logic
+  2. Means to translate user input into computation calls
+  3. Means to translate user input into file I/O etc
+  4. Means to route graphics etc back to user interface
+  5. Protocol for communication between UI and back end geometry engine
+  6. Methods for storing and accessing history
+  7. Clear API for UI, geometry engine, and I/O
+
 ### Unify and encapsulate major objects
 We have discussed having a more centralized data management method.
 There were questions about issues with centralizing everything.
