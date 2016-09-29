@@ -9,7 +9,7 @@
 
 ###2-A. add the main tool class:
 
-```
+```c++
 class NewTool :
   public NTMaker
 {
@@ -41,7 +41,7 @@ private:
 
 ###2-B. add the input params:
 
-```
+```c++
 struct NewToolParams: public NTParamSet{
 
   //Add the inputs here:
@@ -60,7 +60,7 @@ struct NewToolParams: public NTParamSet{
 
 ###2-C. add the side view class:
 
-```
+```c++
 class NewToolSideView :
   public Component,
   public ButtonListener
@@ -78,6 +78,23 @@ private:
   friend class NewTool;
 };
 ```
+###2-D Implement the getData() function for your tool:
+
+```c++
+NTToolData StochasticLatticeGenerator::getData() const
+{
+  return NTToolData{
+    "Stochastic Lattice Generator",
+    130,
+    {{ NTInputType::MESH_CADBODY, NTInputSubType::PASSIVE },
+      { NTInputType::MODIFIER_POINT, NTInputSubType::PASSIVE }},
+    { NTOutputType::LATTICE, NTOutputSubType::SINGLE },
+    {"Select volume","Select modifier"},
+    {"Volume*", "Modifier"}
+  };
+}
+```
+Passive input means that drawing of the inputs is handeled for you. Passive is what most tools should use.
 
 ##3. Add the icon for the new tool to TopBarRibbon.h :
 
@@ -86,7 +103,7 @@ in the .h:
 
 in the .cpp constructor:
 
-```
+```c++
   addAndMakeVisible(mNewToolButton = new DrawableButton("New Tool", DrawableButton::ButtonStyle::ImageStretched));
   mNewToolButton->addListener(this);
   mNewToolButton->setTooltip("Select a new tool.");
@@ -103,7 +120,7 @@ if the tool is for Pro only, add a new license for the feature in:
 
 In `SceneObject::OpenEdit()` add the following in the big If...Else:
 
-```
+```c++
  else if(tooltype == NTToolType::NEW_TOOL){
     auto paramSet = dynamic_cast<NewToolParams*>(mParamSet.get());
     auto newTool = new NewTool();
