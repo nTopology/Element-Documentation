@@ -124,7 +124,7 @@ In `SceneObject::OpenEdit()` add the following in the big If...Else:
  else if(tooltype == NTToolType::NEW_TOOL){
     auto paramSet = dynamic_cast<NewToolParams*>(mParamSet.get());
     auto newTool = new NewTool();
-    outliner->setOverWriteObject(this,NTDrawMode::NORMAL,false);
+    dispatcher->setOverWriteObject(this,NTDrawMode::NORMAL,false);
     mc->activateTool(newTool);
     newTool->open(paramSet,*this);
   }
