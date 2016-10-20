@@ -56,10 +56,6 @@ class NewSceneObjectAttInfo :
 {
 public:
   NewSceneObjectAttInfo(NewSceneObject* sceneObject);
-  void setDelegate(TreeDelegate_SceneObject* sceneObjectDelegate) {
-    mDelegate = sceneObjectDelegate;
-  }
-
   void paint(Graphics& g)override;
   void resized()override;
  };
@@ -108,16 +104,12 @@ in the .cpp add the following:
 
 `NEW_SCENE_OBJECT_INPUT = 200`
 
-##7. Handle the selection of the new input in Outliner.cpp:
+##7. Add NTInputType as a new option in the Scene Object "type getter" in SceneObjectHandler.cpp:
 
-In the function `Outliner::mouseDown` find `if(outliner->getInputBox() && flags == ModifierKeys::leftButtonModifier){` & inside of that if statement, add a new `else if` :
+In the function `SceneObjectHandler::getSceneObjectType` add a new `else if` :
 
 ```
-else if(IType == NTInputType::NEW_SCENE_OBJECT_INPUT){
-        if(so->getType() == SceneObject::NEW_SCENE_OBJECT){
-          outliner->getInputBox()->addSceneObject(so);
-        }
+else if(inType == NTInputType::NEW_SCENE_OBJECT_INPUT){
+      types.insert(SceneObject::NEW_SCENE_OBJECT);
       }
 ```
-
-
